@@ -1,4 +1,4 @@
-var app = angular.module("saneBlog", ['ui.router'])
+var app = angular.module("blog", ['ui.router'])
 
 .config(function($stateProvider, $urlRouterProvider) {
 

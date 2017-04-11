@@ -1,4 +1,4 @@
-angular.module("saneBlog")
+angular.module("blog")
 	.service("authService", function($http) {
 
 		this.login = function(user) {

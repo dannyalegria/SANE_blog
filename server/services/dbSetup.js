@@ -11,7 +11,7 @@ var log = function(input) {
 	}
 };
 
-// INITIALIZE FUNCTION //
+//INITIALIZE FUNCTION
 module.exports = {
 	run: function() {
 		console.log('Initializing database');

@@ -1,4 +1,4 @@
-angular.module("saneBlog").controller("loginCtrl", function($scope, authService, $state) {
+angular.module("blog").controller("loginCtrl", function($scope, authService, $state) {
   $scope.user = {
     email: 't@t.com',
     password: 't'

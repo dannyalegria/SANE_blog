@@ -1,4 +1,4 @@
-angular.module("saneBlog")
+angular.module("blog")
 	.controller("profileCtrl", function($scope, user, authService) {
 		$scope.user = user;
 

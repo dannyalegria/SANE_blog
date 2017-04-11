@@ -1,4 +1,4 @@
-angular.module("saneBlog")
+angular.module("blog")
 	.service("userService", function($http) {
 
 		this.getUsers = function() {
