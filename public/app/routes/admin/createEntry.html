@@ -1,7 +1,22 @@
+<nav-dir></nav-dir>
+
 <h1>Create New Entry</h1>
 
 <br>
 
-<h2>Title:</h2>
-<h3>Author:</h3>
-<h3>Photo:</h3>
+<form ng-submit="createBlogEntry(blog)">
+  <h2>Title:</h2>
+      <input type="text" ng-model="blog.title"></input>
+    <br>
+  <h3>Author:</h3>
+      <input type="text" ng-model="blog.author"></input>
+    <br>
+  <h3>Photo:</h3>
+      <input type="text" ng-model="blog.imageUrl"></input>
+    <br>
+  <h3>Content:</h3>
+    <textarea type="text" rows="5" cols="50" ng-model="blog.content">
+    </textarea>
+    <br>
+  <button type="submit">Save Entry</button>
+</form>

@@ -35,6 +35,21 @@ angular.module('blog', ['ui.router'])
 				}]
 			}
 		})
+		.state('createEntry', {
+			url: '/createEntry',
+			templateUrl: './app/routes/admin/createEntry.html',
+			controller: 'adminCtrl'
+		})
+}]);
+
+angular.module("blog").service("adminService", ["$http", function($http) {
+
+  this.createBlogEntry = function(blog) {
+    $http.post('/api/createBlogEntry').then(function(response) {
+      return response;
+    });
+  };
+
 }]);
 
 angular.module("blog")
@@ -92,7 +107,7 @@ angular.module("blog")
 					return response;
 				});
 		};
-	}]);
+}]);
 
 angular.module("blog")
 	.service("userService", ["$http", function($http) {
@@ -130,6 +145,7 @@ angular.module('blog').directive('navDir', function() {
 
 angular.module("blog")
 	.controller("adminCtrl", ["$scope", "user", "authService", function($scope, user, authService) {
+
 		$scope.user = user;
 
 		$scope.updateUser = function(user) {
@@ -139,6 +155,20 @@ angular.module("blog")
 					console.log(response.data);
 				});
 		};
+
+		$scope.createBlogEntry = function(blog){
+			adminService.createBlogEntry(blog).then(function(response) {
+				if (!response.data) {
+					alert('Unable to create blog entry.');
+				} else {
+					alert('Blog entry created.');
+					$scope.blog = {}; // NOTE THIS MIGHT NOT BE NEEDED?
+				}
+			}).catch(function(err){
+				alert('Unable to create blog entry.');
+			});
+		};
+
 	}]);
 
 angular.module("blog").controller("homeCtrl", ["$scope", function($scope) {

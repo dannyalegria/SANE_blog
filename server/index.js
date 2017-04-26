@@ -26,6 +26,7 @@ dbSetup.run();
 
 // CONTROLLERS //
 var userCtrl = require('./controllers/userCtrl');
+var blogCtrl = require('./controllers/blogCtrl');
 
 // SERVICES //
 var passport = require('./services/passport');
@@ -61,6 +62,9 @@ app.post('/api/register', userCtrl.register);
 app.get('/api/user', userCtrl.read);
 app.get('/api/me', isAuthed, userCtrl.me);
 app.put('/api/user/current', isAuthed, userCtrl.update);
+
+// Blog Endponts //
+app.post('/api/createBlogEntry', blogCtrl.createBlogEntry)
 
 // CONNECTIONS //
 var port = config.PORT;
