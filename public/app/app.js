@@ -1,13 +1,13 @@
-var app = angular.module("blog", ['ui.router'])
+angular.module('blog', ['ui.router'])
 
 .config(function($stateProvider, $urlRouterProvider) {
 
-	$urlRouterProvider.otherwise("/");
+	$urlRouterProvider.otherwise('/');
 
 	$stateProvider
 		.state('home', {
-			url: "/",
-			templateUrl: "./app/routes/home/homeTmpl.html",
+			url: '/',
+			templateUrl: './app/routes/home/homeTmpl.html',
 			controller: 'homeCtrl'
 		})
 		.state('login', {
@@ -15,10 +15,10 @@ var app = angular.module("blog", ['ui.router'])
 			templateUrl: './app/routes/login/loginTmpl.html',
 			controller: 'loginCtrl'
 		})
-		.state('profile', {
-			url: '/profile',
-			templateUrl: './app/routes/profile/profileTmpl.html',
-			controller: 'profileCtrl',
+		.state('admin', {
+			url: '/admin',
+			templateUrl: './app/routes/admin/adminTmpl.html',
+			controller: 'adminCtrl',
 			resolve: {
 				user: function(authService, $state) {
 					return authService.getCurrentUser()
@@ -26,12 +26,13 @@ var app = angular.module("blog", ['ui.router'])
 							if (!response.data)
 								$state.go('login');
 							return response.data;
+							alert(response.data);
 						})
 						.catch(function(err) {
 							$state.go('login');
+							alert(response.data);
 						});
 				}
 			}
-		});
-
+		})
 });

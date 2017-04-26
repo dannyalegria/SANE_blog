@@ -1,13 +1,13 @@
-var app = angular.module("blog", ['ui.router'])
+angular.module('blog', ['ui.router'])
 
 .config(["$stateProvider", "$urlRouterProvider", function($stateProvider, $urlRouterProvider) {
 
-	$urlRouterProvider.otherwise("/");
+	$urlRouterProvider.otherwise('/');
 
 	$stateProvider
 		.state('home', {
-			url: "/",
-			templateUrl: "./app/routes/home/homeTmpl.html",
+			url: '/',
+			templateUrl: './app/routes/home/homeTmpl.html',
 			controller: 'homeCtrl'
 		})
 		.state('login', {
@@ -15,10 +15,10 @@ var app = angular.module("blog", ['ui.router'])
 			templateUrl: './app/routes/login/loginTmpl.html',
 			controller: 'loginCtrl'
 		})
-		.state('profile', {
-			url: '/profile',
-			templateUrl: './app/routes/profile/profileTmpl.html',
-			controller: 'profileCtrl',
+		.state('admin', {
+			url: '/admin',
+			templateUrl: './app/routes/admin/adminTmpl.html',
+			controller: 'adminCtrl',
 			resolve: {
 				user: ["authService", "$state", function(authService, $state) {
 					return authService.getCurrentUser()
@@ -26,14 +26,15 @@ var app = angular.module("blog", ['ui.router'])
 							if (!response.data)
 								$state.go('login');
 							return response.data;
+							alert(response.data);
 						})
 						.catch(function(err) {
 							$state.go('login');
+							alert(response.data);
 						});
 				}]
 			}
-		});
-
+		})
 }]);
 
 angular.module("blog")
@@ -41,7 +42,7 @@ angular.module("blog")
 
 		this.login = function(user) {
 			return $http({
-					method: 'post',
+					method: 'POST',
 					url: '/api/login',
 					data: user
 				})
@@ -52,7 +53,7 @@ angular.module("blog")
 
 		this.logout = function() {
 			return $http({
-					method: 'get',
+					method: 'GET',
 					url: '/api/logout'
 				})
 				.then(function(response) {
@@ -127,6 +128,19 @@ angular.module('blog').directive('navDir', function() {
   };
 });
 
+angular.module("blog")
+	.controller("adminCtrl", ["$scope", "user", "authService", function($scope, user, authService) {
+		$scope.user = user;
+
+		$scope.updateUser = function(user) {
+			authService.editUser(user)
+				.then(function(response) {
+					$scope.user = response.data;
+					console.log(response.data);
+				});
+		};
+	}]);
+
 angular.module("blog").controller("homeCtrl", ["$scope", function($scope) {
   $scope.hello = 'Hello World!';
 
@@ -134,8 +148,8 @@ angular.module("blog").controller("homeCtrl", ["$scope", function($scope) {
 
 angular.module("blog").controller("loginCtrl", ["$scope", "authService", "$state", function($scope, authService, $state) {
   $scope.user = {
-    email: 't@t.com',
-    password: 't'
+    email: 'karl@marx.com',
+    password: 'capital'
   }
 
   $scope.login = function(user) {
@@ -144,7 +158,7 @@ angular.module("blog").controller("loginCtrl", ["$scope", "authService", "$state
         alert('User does not exist');
         $scope.user.password = '';
       } else {
-        $state.go('profile');
+        $state.go('admin');
       }
     }).catch(function(err) {
       alert('Unable to login');
@@ -164,15 +178,3 @@ angular.module("blog").controller("loginCtrl", ["$scope", "authService", "$state
     });
   };
 }]);
-
-angular.module("blog")
-	.controller("profileCtrl", ["$scope", "user", "authService", function($scope, user, authService) {
-		$scope.user = user;
-
-		$scope.updateUser = function(user) {
-			authService.editUser(user)
-				.then(function(response) {
-					$scope.user = response.data;
-				});
-		};
-	}]);

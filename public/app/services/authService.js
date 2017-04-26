@@ -3,7 +3,7 @@ angular.module("blog")
 
 		this.login = function(user) {
 			return $http({
-					method: 'post',
+					method: 'POST',
 					url: '/api/login',
 					data: user
 				})
@@ -14,7 +14,7 @@ angular.module("blog")
 
 		this.logout = function() {
 			return $http({
-					method: 'get',
+					method: 'GET',
 					url: '/api/logout'
 				})
 				.then(function(response) {

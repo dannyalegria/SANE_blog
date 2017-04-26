@@ -8,14 +8,14 @@ var paths = {
 	jsSource: ['public/**/*.js'],
 	sassSource: ['public/**/*.scss'], // Change sass to scss if you want to work with it instead.
 	indexSource: ['public/**/*.html', 'public/**/*.css'],
-	server: ['server/server.js']
+	server: ['server/index.js']
 };
 
-gulp.task('serve', function() {
-	nodemon({
-		'script': paths.server
-	});
-});
+// gulp.task('serve', function() {
+// 	nodemon({
+// 		'script': paths.server
+// 	});
+// });
 
 gulp.task('sass', function() {
 	gulp.src(paths.sassSource)

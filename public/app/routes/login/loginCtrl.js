@@ -1,7 +1,7 @@
 angular.module("blog").controller("loginCtrl", function($scope, authService, $state) {
   $scope.user = {
-    email: 't@t.com',
-    password: 't'
+    email: 'karl@marx.com',
+    password: 'capital'
   }
 
   $scope.login = function(user) {
@@ -10,7 +10,7 @@ angular.module("blog").controller("loginCtrl", function($scope, authService, $st
         alert('User does not exist');
         $scope.user.password = '';
       } else {
-        $state.go('profile');
+        $state.go('admin');
       }
     }).catch(function(err) {
       alert('Unable to login');
