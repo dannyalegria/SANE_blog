@@ -38,6 +38,6 @@ angular.module('blog', ['ui.router'])
 		.state('createEntry', {
 			url: '/createEntry',
 			templateUrl: './app/routes/admin/createEntry.html',
-			controller: 'adminCtrl'
+			controller: 'createEntryCtrl'
 		})
 });

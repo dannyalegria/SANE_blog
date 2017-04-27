@@ -38,16 +38,30 @@ angular.module('blog', ['ui.router'])
 		.state('createEntry', {
 			url: '/createEntry',
 			templateUrl: './app/routes/admin/createEntry.html',
-			controller: 'adminCtrl'
+			controller: 'createEntryCtrl'
 		})
 }]);
 
 angular.module("blog").service("adminService", ["$http", function($http) {
 
+  // this.createBlogEntry = function(blog) {
+  //   $http.post('/api/createBlogEntry').then(function(response) {
+  //     return response;
+  //   });
+  // };
+
   this.createBlogEntry = function(blog) {
-    $http.post('/api/createBlogEntry').then(function(response) {
-      return response;
-    });
+    return $http({
+        method: 'POST',
+        url: '/api/createBlogEntry',
+        data: blog,
+        success: function(){
+        console.log('form submitted.');
+      }
+      })
+      .then(function(response) {
+        return response;
+      });
   };
 
 }]);
@@ -143,8 +157,7 @@ angular.module('blog').directive('navDir', function() {
   };
 });
 
-angular.module("blog")
-	.controller("adminCtrl", ["$scope", "user", "authService", function($scope, user, authService) {
+angular.module("blog").controller("adminCtrl", ["$scope", "user", "authService", function($scope, user, authService) {
 
 		$scope.user = user;
 
@@ -156,20 +169,22 @@ angular.module("blog")
 				});
 		};
 
+}]);
+
+angular.module("blog").controller("createEntryCtrl", ["$scope", "adminService", function($scope, adminService) {
+
 		$scope.createBlogEntry = function(blog){
 			adminService.createBlogEntry(blog).then(function(response) {
-				if (!response.data) {
-					alert('Unable to create blog entry.');
+				if (response.data) {
+	        return response.data;
+					alert('Created Blog entry');
 				} else {
-					alert('Blog entry created.');
-					$scope.blog = {}; // NOTE THIS MIGHT NOT BE NEEDED?
+					alert('Catastrophic failure.');
 				}
-			}).catch(function(err){
-				alert('Unable to create blog entry.');
-			});
-		};
+			}
+  )};
 
-	}]);
+}]);
 
 angular.module("blog").controller("homeCtrl", ["$scope", function($scope) {
   $scope.hello = 'Hello World!';
