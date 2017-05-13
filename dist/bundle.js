@@ -40,29 +40,34 @@ angular.module('blog', ['ui.router'])
 			templateUrl: './app/routes/admin/createEntry.html',
 			controller: 'createEntryCtrl'
 		})
+		.state('updateEntries', {
+			url: '/updateEntries',
+			templateUrl: './app/routes/admin/updateEntries.html',
+			controller: 'updateEntriesCtrl'
+		})
+		.state('updateEntry', {
+			url: '/updateEntry/:id',
+			templateUrl: './app/routes/admin/updateEntry.html',
+			controller: 'updateEntryCtrl'
+		})
 }]);
 
-angular.module("blog").service("adminService", ["$http", function($http) {
-
-  // this.createBlogEntry = function(blog) {
-  //   $http.post('/api/createBlogEntry').then(function(response) {
-  //     return response;
-  //   });
-  // };
+angular.module("blog").service("adminService", ["$http", "$state", function($http, $state) {
 
   this.createBlogEntry = function(blog) {
-    return $http({
-        method: 'POST',
-        url: '/api/createBlogEntry',
-        data: blog,
-        success: function(){
-        console.log('form submitted.');
-      }
-      })
-      .then(function(response) {
-        return response;
-      });
-  };
+    $http.post('/api/createBlogEntry', blog)
+        .success(function(data) {
+          alert("Entry Posted");
+        })
+        .error(function(data) {
+          alert("Error in Posting");
+        })
+  },
+
+  this.getBlog = function(id) {
+    return $http.get('/api/getBlogEntry/' + id);
+  }
+
 
 }]);
 
@@ -123,6 +128,12 @@ angular.module("blog")
 		};
 }]);
 
+angular.module("blog").service("homeService", ["$http", function($http) {
+
+  this.blogs = $http.get('/api/getBlogEntries'); 
+
+}]);
+
 angular.module("blog")
 	.service("userService", ["$http", function($http) {
 
@@ -165,7 +176,6 @@ angular.module("blog").controller("adminCtrl", ["$scope", "user", "authService",
 			authService.editUser(user)
 				.then(function(response) {
 					$scope.user = response.data;
-					console.log(response.data);
 				});
 		};
 
@@ -174,20 +184,46 @@ angular.module("blog").controller("adminCtrl", ["$scope", "user", "authService",
 angular.module("blog").controller("createEntryCtrl", ["$scope", "adminService", function($scope, adminService) {
 
 		$scope.createBlogEntry = function(blog){
-			adminService.createBlogEntry(blog).then(function(response) {
-				if (response.data) {
-	        return response.data;
-					alert('Created Blog entry');
-				} else {
-					alert('Catastrophic failure.');
-				}
-			}
-  )};
+			adminService.createBlogEntry(blog);
+		}
 
 }]);
 
-angular.module("blog").controller("homeCtrl", ["$scope", function($scope) {
-  $scope.hello = 'Hello World!';
+angular.module("blog").controller("updateEntriesCtrl", ["$scope", "$stateParams", "adminService", "homeService", function($scope, $stateParams, adminService, homeService) {
+
+  homeService.blogs.then(function(response){
+    $scope.blogs = response.data;
+  })
+
+  // $scope.updateBlogEntry = function(blog){
+  //   adminService.updateBlogEntry(blog);
+  // }
+
+  // var id = $stateParams.id;
+  //
+  // console.log($stateParams);
+  //
+  // adminService.getBlog(id).then(function(response){
+  //   $scope.specificBlog = response.data;
+  // })
+
+}]);
+
+angular.module("blog").controller("updateEntryCtrl", ["$scope", "$stateParams", "adminService", function($scope, $stateParams, adminService) {
+
+  var id = $stateParams.id;
+
+  adminService.getBlog(id).then(function(response){
+    $scope.specificBlog = response.data;
+  })
+
+}]);
+
+angular.module("blog").controller("homeCtrl", ["$scope", "homeService", function($scope, homeService) {
+
+  homeService.blogs.then(function(response){
+    $scope.blogs = response.data;
+  })
 
 }]);
 

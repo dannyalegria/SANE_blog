@@ -63,8 +63,10 @@ app.get('/api/user', userCtrl.read);
 app.get('/api/me', isAuthed, userCtrl.me);
 app.put('/api/user/current', isAuthed, userCtrl.update);
 
-// Blog Endponts //
-app.post('/api/createBlogEntry', blogCtrl.createBlogEntry)
+// Blog Endpoints //
+app.post('/api/createBlogEntry', blogCtrl.createBlogEntry);
+app.get('/api/getBlogEntries', blogCtrl.readBlogEntries);
+app.get('/api/getBlogEntry/:id', blogCtrl.readBlogEntry);
 
 // CONNECTIONS //
 var port = config.PORT;

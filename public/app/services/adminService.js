@@ -1,23 +1,18 @@
-angular.module("blog").service("adminService", function($http) {
-
-  // this.createBlogEntry = function(blog) {
-  //   $http.post('/api/createBlogEntry').then(function(response) {
-  //     return response;
-  //   });
-  // };
+angular.module("blog").service("adminService", function($http, $state) {
 
   this.createBlogEntry = function(blog) {
-    return $http({
-        method: 'POST',
-        url: '/api/createBlogEntry',
-        data: blog,
-        success: function(){
-        console.log('form submitted.');
-      }
-      })
-      .then(function(response) {
-        return response;
-      });
-  };
+    $http.post('/api/createBlogEntry', blog)
+        .success(function(data) {
+          alert("Entry Posted");
+        })
+        .error(function(data) {
+          alert("Error in Posting");
+        })
+  },
+
+  this.getBlog = function(id) {
+    return $http.get('/api/getBlogEntry/' + id);
+  }
+
 
 });

@@ -1,0 +1,38 @@
+<nav-dir></nav-dir>
+
+  <h1>Blog Template</h1>
+
+  <h2>Update Entries:</h2>
+
+  <hr>
+
+  <div ng-repeat="blog in blogs">
+
+    <form>
+
+      <h2>{{blog.title}}</h2>
+
+      <br>
+
+      <p><strong>Author:</strong> {{blog.author}}</p>
+
+      <br>
+
+      <div><p>{{blog.imageurl}}<p></div>
+
+      <br>
+
+      <div>{{blog.content}}</div>
+
+      <br>
+
+      <h1>TEST</h1>
+
+      <button ui-sref="updateEntry({id: blog.id})">Update Entry</button>
+      <button>Delete Entry</button>
+
+    </form>
+
+    <hr>
+
+  </div>

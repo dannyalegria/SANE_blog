@@ -1,3 +1,18 @@
 <nav-dir></nav-dir>
 
-<h1>Blog Template</h1>
+  <h1>Blog Template</h1>
+
+  <h2>Entries:</h2>
+
+  <hr>
+
+  <div ng-repeat="blog in blogs">
+    <h2>{{blog.title}}</h2>
+    <br>
+    <p><strong>Author:</strong> {{blog.author}}</p>
+    <br>
+    <div><p>{{blog.imageurl}}<p></div>
+    <br>
+    <div>{{blog.content}}</div>
+    <hr>
+  </div>

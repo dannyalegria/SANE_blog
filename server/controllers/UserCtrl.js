@@ -89,11 +89,10 @@ module.exports = {
 		db.users.save(updateUser, function(err, user) {
 			if (err) {
 				console.log('User update error', err);
-
 				return res.status(401)
 					.send(err);
 			}
-
+			
 			req.user = user;
 
 			delete user.password;

@@ -40,4 +40,14 @@ angular.module('blog', ['ui.router'])
 			templateUrl: './app/routes/admin/createEntry.html',
 			controller: 'createEntryCtrl'
 		})
+		.state('updateEntries', {
+			url: '/updateEntries',
+			templateUrl: './app/routes/admin/updateEntries.html',
+			controller: 'updateEntriesCtrl'
+		})
+		.state('updateEntry', {
+			url: '/updateEntry/:id',
+			templateUrl: './app/routes/admin/updateEntry.html',
+			controller: 'updateEntryCtrl'
+		})
 });
