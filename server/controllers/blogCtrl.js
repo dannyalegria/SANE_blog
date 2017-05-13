@@ -31,14 +31,11 @@ module.exports = {
 	readBlogEntry: function(req, res, next) {
 		db.blogs.blog_read_one([req.params.id], function(err, results){
 			if (err) {
-				res.send(err);
-				console.log(err);
+				res.send(err);			
 			} else if (results.length === 0){
-				res.status(404).send("That entry does not exist.");
-				console.log("That entry does not exist.")
+				res.status(404).send("That entry does not exist.");			
 			}	else {
-				res.send(results[0]);
-				console.log(results[0]);
+				res.send(results[0]);			
 			}
 		})
 	}
