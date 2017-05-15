@@ -31,11 +31,41 @@ module.exports = {
 	readBlogEntry: function(req, res, next) {
 		db.blogs.blog_read_one([req.params.id], function(err, results){
 			if (err) {
-				res.send(err);			
+				res.send(err);
 			} else if (results.length === 0){
-				res.status(404).send("That entry does not exist.");			
+				res.status(404).send("That entry does not exist.");
 			}	else {
-				res.send(results[0]);			
+				res.send(results[0]);
+			}
+		})
+	},
+
+	// UPDATE
+
+	// updateBlogEntry: function(req, res, next) {
+	// 	db.blogs.blog_update([req.body.title, req.body.author, req.body.imageurl, req.body.content], function(err) {
+  //     if (err) {
+  //       console.log(err);
+  //       return res.status(500).send(err);
+  //     }
+  //     return res.status(200).send("You did it!");
+  //   });
+	// }
+
+	updateBlogEntry: function(req, res, next){
+		db.blogs.blog_update([
+			req.params.id,
+			req.body.title,
+			req.body.author,
+			req.body.imageurl,
+			req.body.content
+		],
+		function(err, results){
+			if (err){
+				console.error(err);
+				res.send(err);
+			} else {
+				res.send(results[0]);
 			}
 		})
 	}

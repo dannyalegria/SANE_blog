@@ -1,5 +1,4 @@
 angular.module('blog', ['ui.router'])
-
 .config(function($stateProvider, $urlRouterProvider) {
 
 	$urlRouterProvider.otherwise('/');
@@ -30,7 +29,6 @@ angular.module('blog', ['ui.router'])
 						})
 						.catch(function(err) {
 							$state.go('login');
-							alert(response.data);
 						});
 				}
 			}

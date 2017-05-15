@@ -67,6 +67,8 @@ app.put('/api/user/current', isAuthed, userCtrl.update);
 app.post('/api/createBlogEntry', blogCtrl.createBlogEntry);
 app.get('/api/getBlogEntries', blogCtrl.readBlogEntries);
 app.get('/api/getBlogEntry/:id', blogCtrl.readBlogEntry);
+// BUG Why isn't this working?
+app.put('/api/updateBlogEntry/:id', blogCtrl.updateBlogEntry);
 
 // CONNECTIONS //
 var port = config.PORT;
