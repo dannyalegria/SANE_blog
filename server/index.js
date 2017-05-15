@@ -1,19 +1,19 @@
-// EXTERNAL MODULES //
+// External Modules //
 var express = require('express');
 var bodyParser = require('body-parser');
 var session = require('express-session');
 var massive = require('massive');
 
-// CONFIG //
+// Config //
 var config = require('./config');
 
-// EXPRESS //
+// Express //
 var app = module.exports = express();
 
 app.use(express.static(__dirname + './../dist'));
 app.use(bodyParser.json());
 
-// MASSIVE //
+// Massive //
 var massiveUri = config.MASSIVE_URI;
 var massiveServer = massive.connectSync({
 	connectionString: massiveUri
@@ -24,14 +24,14 @@ var db = app.get('db');
 var dbSetup = require('./services/dbSetup');
 dbSetup.run();
 
-// CONTROLLERS //
+// Controllers //
 var userCtrl = require('./controllers/userCtrl');
 var blogCtrl = require('./controllers/blogCtrl');
 
-// SERVICES //
+// Services //
 var passport = require('./services/passport');
 
-// POLICIES //
+// policies //
 var isAuthed = function(req, res, next) {
 	if (!req.isAuthenticated()) return res.status(401)
 		.send();
@@ -70,7 +70,7 @@ app.get('/api/getBlogEntry/:id', blogCtrl.readBlogEntry);
 app.put('/api/updateBlogEntry/:id', blogCtrl.updateBlogEntry);
 app.delete('/api/deleteBlogEntry/:id', blogCtrl.deleteBlogEntry);
 
-// CONNECTIONS //
+// Connections //
 var port = config.PORT;
 app.listen(port, function() {
 	console.log('Listening on port ' + port);

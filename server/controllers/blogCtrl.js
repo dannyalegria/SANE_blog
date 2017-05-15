@@ -68,6 +68,18 @@ module.exports = {
 				res.send(results[0]);
 			}
 		})
+	},
+
+	// DELETE
+
+	deleteBlogEntry: function(req, res, next){
+		db.blogs.blog_delete([req.params.id], function(err, results){
+			if (err) {
+				res.status(500).send(err);
+			} else {
+				res.status(200).send(results);
+			}
+		})
 	}
 
 };

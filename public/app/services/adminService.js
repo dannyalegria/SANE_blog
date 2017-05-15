@@ -14,6 +14,8 @@ angular.module("blog").service("adminService", function($http, $state) {
     return $http.get('/api/getBlogEntry/' + id);
   },
 
+  // NOTE See if you can make all these shorthand NOTE //
+
   // this.updateBlogEntry = function(id, title, author, imageurl, content) {
   //   return $http.put('/api/updateBlogEntry/' + id, ({title, author, imageurl, content}))
   //     .success(function(data) {
@@ -41,6 +43,18 @@ angular.module("blog").service("adminService", function($http, $state) {
     })
     .error(function(data) {
       alert("Error Updating");
+    })
+  },
+
+  // NOTE Add an 'are you sure?' dialog NOTE//
+
+  this.deleteBlogEntry = function(id) {
+    return $http.delete('/api/deleteBlogEntry/' + id)
+    .success(function(data) {
+      alert("Entry Deleted");
+    })
+    .error(function(data) {
+      alert("Error in Deleting");
     })
   }
 

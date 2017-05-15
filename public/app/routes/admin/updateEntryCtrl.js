@@ -10,8 +10,16 @@ angular.module("blog").controller("updateEntryCtrl", function($scope, $statePara
     $scope.specificBlog = response.data;
   })
 
+  // NOTE Change these names to just updateBlog etc, no entry needed NOTE //
+
   $scope.updateBlogEntry = function(id, title, author, imageurl, content) {
     adminService.updateBlogEntry(id, title, author, imageurl, content);
+  }
+
+  $scope.deleteBlogEntry = function(id) {
+    // if(confirm('Are you sure? This will permanently delete this entry.')) {
+      adminService.deleteBlogEntry(id);
+    //  }
   }
 
 });
