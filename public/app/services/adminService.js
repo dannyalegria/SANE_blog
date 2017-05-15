@@ -27,7 +27,7 @@ angular.module("blog").service("adminService", function($http, $state) {
   this.updateBlogEntry = function(id, title, author, imageurl, content) {
     return $http({
       method: 'PUT',
-      url: 'updateBlogEntry/' + id,
+      url: '/api/updateBlogEntry/' + id,
       data: {
         id: id,
         title: title,

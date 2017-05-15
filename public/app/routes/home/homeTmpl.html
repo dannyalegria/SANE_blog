@@ -6,7 +6,10 @@
 
   <hr>
 
-  <div ng-repeat="blog in blogs">
+  <!--BUG Why isn't this showing up in order? After an edit, the blog appears at the bottom BUG-->
+  <!--NOTE Add timestamp and order by timestamp. NOTE-->
+
+  <div ng-repeat="blog in blogs | orderBy:'blog.id'">
     <h2>{{blog.title}}</h2>
     <br>
     <p><strong>Author:</strong> {{blog.author}}</p>
