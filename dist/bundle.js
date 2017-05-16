@@ -58,7 +58,7 @@ angular.module("blog").service("adminService", ["$http", "$state", function($htt
           alert("Entry Posted");
         })
         .error(function(data) {
-          alert("Error in Posting");
+          alert("Error in Posting. Refresh the page and try again.");
         })
   },
 
@@ -92,21 +92,24 @@ angular.module("blog").service("adminService", ["$http", "$state", function($htt
     })
     .success(function(data) {
       alert("Entry Updated");
+      // BUG Need this to redirect to home page, and refresh. Right now, it only refreshes if done manually... BUG //
+      $state.go('home', {}, {reload: 'home'});
     })
     .error(function(data) {
-      alert("Error Updating");
+      alert("Error Updating. Refresh the page and try again.");
     })
   },
 
-  // NOTE Add an 'are you sure?' dialog NOTE//
-
   this.deleteBlogEntry = function(id) {
     return $http.delete('/api/deleteBlogEntry/' + id)
+    // BUG this also fires the .success of the PUT function.. sigh.  BUG //
     .success(function(data) {
       alert("Entry Deleted");
+    // BUG this is not refreshing. BUG //
+      $state.refresh();
     })
     .error(function(data) {
-      alert("Error in Deleting");
+      alert("Error in Deleting. Refresh the page and try again.");
     })
   }
 
@@ -172,7 +175,7 @@ angular.module("blog")
 
 angular.module("blog").service("homeService", ["$http", function($http) {
 
-  this.blogs = $http.get('/api/getBlogEntries'); 
+  this.blogs = $http.get('/api/getBlogEntries');
 
 }]);
 
@@ -233,21 +236,21 @@ angular.module("blog").controller("createEntryCtrl", ["$scope", "adminService", 
 
 angular.module("blog").controller("updateEntriesCtrl", ["$scope", "$stateParams", "adminService", "homeService", function($scope, $stateParams, adminService, homeService) {
 
+  var id = $stateParams.id;
+
   homeService.blogs.then(function(response){
     $scope.blogs = response.data;
   })
 
-  // $scope.updateBlogEntry = function(blog){
-  //   adminService.updateBlogEntry(blog);
-  // }
+  // NOTE Duplicate function, coalesce all these controllers. NOTE //
+  // BUG Why isn't this working? BUG //
 
-  // var id = $stateParams.id;
-  //
-  // console.log($stateParams);
-  //
-  // adminService.getBlog(id).then(function(response){
-  //   $scope.specificBlog = response.data;
-  // })
+  $scope.deleteBlogEntry = function(id) {
+    console.log('clicked');
+    if (confirm("Are you sure? Clicking 'OK' will permanently delete this entry.")) {
+      adminService.deleteBlogEntry(id);
+    }
+  }
 
 }]);
 
@@ -266,13 +269,14 @@ angular.module("blog").controller("updateEntryCtrl", ["$scope", "$stateParams", 
   // NOTE Change these names to just updateBlog etc, no entry needed NOTE //
 
   $scope.updateBlogEntry = function(id, title, author, imageurl, content) {
+    console.log(id, title, author, imageurl, content)
     adminService.updateBlogEntry(id, title, author, imageurl, content);
   }
 
   $scope.deleteBlogEntry = function(id) {
-    // if(confirm('Are you sure? This will permanently delete this entry.')) {
+    if (confirm("Are you sure? Clicking 'OK' will permanently delete this entry.")) {
       adminService.deleteBlogEntry(id);
-    //  }
+    }
   }
 
 }]);

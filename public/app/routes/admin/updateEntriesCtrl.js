@@ -1,19 +1,19 @@
 angular.module("blog").controller("updateEntriesCtrl", function($scope, $stateParams, adminService, homeService) {
 
+  var id = $stateParams.id;
+
   homeService.blogs.then(function(response){
     $scope.blogs = response.data;
   })
 
-  // $scope.updateBlogEntry = function(blog){
-  //   adminService.updateBlogEntry(blog);
-  // }
+  // NOTE Duplicate function, coalesce all these controllers. NOTE //
+  // BUG Why isn't this working? BUG //
 
-  // var id = $stateParams.id;
-  //
-  // console.log($stateParams);
-  //
-  // adminService.getBlog(id).then(function(response){
-  //   $scope.specificBlog = response.data;
-  // })
+  $scope.deleteBlogEntry = function(id) {
+    console.log('clicked');
+    if (confirm("Are you sure? Clicking 'OK' will permanently delete this entry.")) {
+      adminService.deleteBlogEntry(id);
+    }
+  }
 
 });

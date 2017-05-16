@@ -6,7 +6,7 @@ angular.module("blog").service("adminService", function($http, $state) {
           alert("Entry Posted");
         })
         .error(function(data) {
-          alert("Error in Posting");
+          alert("Error in Posting. Refresh the page and try again.");
         })
   },
 
@@ -40,21 +40,24 @@ angular.module("blog").service("adminService", function($http, $state) {
     })
     .success(function(data) {
       alert("Entry Updated");
+      // BUG Need this to redirect to home page, and refresh. Right now, it only refreshes if done manually... BUG //
+      $state.go('home', {}, {reload: 'home'});
     })
     .error(function(data) {
-      alert("Error Updating");
+      alert("Error Updating. Refresh the page and try again.");
     })
   },
 
-  // NOTE Add an 'are you sure?' dialog NOTE//
-
   this.deleteBlogEntry = function(id) {
     return $http.delete('/api/deleteBlogEntry/' + id)
+    // BUG this also fires the .success of the PUT function.. sigh.  BUG //
     .success(function(data) {
       alert("Entry Deleted");
+    // BUG this is not refreshing. BUG //
+      $state.refresh();
     })
     .error(function(data) {
-      alert("Error in Deleting");
+      alert("Error in Deleting. Refresh the page and try again.");
     })
   }
 

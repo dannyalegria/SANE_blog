@@ -11,7 +11,7 @@ module.exports = {
 			if (err) {
 				return res.status(500).send(err);
 			} else {
-				res.send(200);
+				res.status(200);
 			}
 	  })
   },
@@ -41,16 +41,6 @@ module.exports = {
 	},
 
 	// UPDATE
-
-	// updateBlogEntry: function(req, res, next) {
-	// 	db.blogs.blog_update([req.body.title, req.body.author, req.body.imageurl, req.body.content], function(err) {
-  //     if (err) {
-  //       console.log(err);
-  //       return res.status(500).send(err);
-  //     }
-  //     return res.status(200).send("You did it!");
-  //   });
-	// }
 
 	updateBlogEntry: function(req, res, next){
 		db.blogs.blog_update([

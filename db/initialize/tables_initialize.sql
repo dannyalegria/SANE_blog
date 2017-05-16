@@ -12,3 +12,13 @@ CREATE TABLE IF NOT EXISTS blogs (
   imageUrl text,
   content text
 );
+
+-- CREATE TABLE IF NOT EXISTS tags (
+--   tagId SERIAL PRIMARY KEY,
+--   tagTitle varchar(255)
+-- );
+--
+-- CREATE TABLE IF NOT EXISTS blogTags (
+--   blogId SERIAL PRIMARY KEY,
+--   tagId varchar(255)
+-- );

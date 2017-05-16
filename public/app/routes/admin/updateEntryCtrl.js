@@ -13,13 +13,14 @@ angular.module("blog").controller("updateEntryCtrl", function($scope, $statePara
   // NOTE Change these names to just updateBlog etc, no entry needed NOTE //
 
   $scope.updateBlogEntry = function(id, title, author, imageurl, content) {
+    console.log(id, title, author, imageurl, content)
     adminService.updateBlogEntry(id, title, author, imageurl, content);
   }
 
   $scope.deleteBlogEntry = function(id) {
-    // if(confirm('Are you sure? This will permanently delete this entry.')) {
+    if (confirm("Are you sure? Clicking 'OK' will permanently delete this entry.")) {
       adminService.deleteBlogEntry(id);
-    //  }
+    }
   }
 
 });
