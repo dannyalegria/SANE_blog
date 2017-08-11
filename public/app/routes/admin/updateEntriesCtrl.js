@@ -7,7 +7,7 @@ angular.module("blog").controller("updateEntriesCtrl", function($scope, $statePa
   })
 
   // NOTE Duplicate function, coalesce all these controllers. NOTE //
-  // BUG Why isn't this working? BUG //
+  // TODO Figure out how to make the page refresh after deleting a blog entry. TODO //
 
   $scope.deleteBlogEntry = function(id) {
     console.log('clicked');

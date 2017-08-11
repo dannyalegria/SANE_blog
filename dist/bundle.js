@@ -68,16 +68,6 @@ angular.module("blog").service("adminService", ["$http", "$state", function($htt
 
   // NOTE See if you can make all these shorthand NOTE //
 
-  // this.updateBlogEntry = function(id, title, author, imageurl, content) {
-  //   return $http.put('/api/updateBlogEntry/' + id, ({title, author, imageurl, content}))
-  //     .success(function(data) {
-  //       alert("Entry Updated");
-  //     })
-  //     .error(function(data) {
-  //       alert("Error Updating");
-  //     })
-  // }
-
   this.updateBlogEntry = function(id, title, author, imageurl, content) {
     return $http({
       method: 'PUT',
@@ -197,22 +187,6 @@ angular.module("blog")
 		};
 	}]);
 
-angular.module("blog").controller("navCtrl", ["$scope", "authService", "$state", function($scope, authService, $state) {
-  $scope.logout = function() {
-    authService.logout().then(function(response) {
-      $state.go('login');
-    });
-  };
-}]);
-
-angular.module('blog').directive('navDir', function() {
-  return {
-    restrict: 'EA',
-    templateUrl: './app/directives/nav/navTmpl.html',
-    controller: 'navCtrl'
-  };
-});
-
 angular.module("blog").controller("adminCtrl", ["$scope", "user", "authService", function($scope, user, authService) {
 
 		$scope.user = user;
@@ -243,7 +217,7 @@ angular.module("blog").controller("updateEntriesCtrl", ["$scope", "$stateParams"
   })
 
   // NOTE Duplicate function, coalesce all these controllers. NOTE //
-  // BUG Why isn't this working? BUG //
+  // TODO Figure out how to make the page refresh after deleting a blog entry. TODO //
 
   $scope.deleteBlogEntry = function(id) {
     console.log('clicked');
@@ -321,3 +295,44 @@ angular.module("blog").controller("loginCtrl", ["$scope", "authService", "$state
     });
   };
 }]);
+
+angular.module("blog").controller("navCtrl", ["$scope", "authService", "$state", function($scope, authService, $state) {
+  $scope.logout = function() {
+    authService.logout().then(function(response) {
+      $state.go('login');
+    });
+  };
+}]);
+
+angular.module('blog').directive('navDir', function() {
+  return {
+    restrict: 'EA',
+    templateUrl: './app/directives/nav/navTmpl.html',
+    controller: 'navCtrl',
+    link: function(scope, element, attribute) {
+
+      // nav dropdown toggle:
+      $('nav ul li > a:not(:only-child)').click(function(e) {
+        $(this).siblings('.nav-dropdown').toggle();
+        // if there is more than one toggle button, this prevents all toggles from opening:
+        $('.nav-dropdown').not($(this).siblings()).hide();
+        e.stopPropagation();
+      });
+
+      // close toggle when you click outside of it:
+      $('html').click(function() {
+        $('.nav-dropdown').hide();
+      });
+
+      // toggle hamburger
+      $('#nav-toggle').on('click', function() {
+        this.classList.toggle('active');
+      });
+
+      $('#nav-toggle').click(function() {
+        $('nav ul').toggle();
+      });
+
+    }
+  };
+});

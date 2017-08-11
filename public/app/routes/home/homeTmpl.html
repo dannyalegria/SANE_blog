@@ -1,23 +1,24 @@
 <nav-dir></nav-dir>
 
-  <h1>Blog Template</h1>
+<h1>Blog Template</h1>
 
-  <h2>Entries:</h2>
+<h2>Entries:</h2>
 
-  <img src="./dog.jpg" alt="dog">
+<!--TODO Figure out how to make Gulp move the img folder to the dist folder automatically. Seems so simple, why Can't I figure it out?-->
+<!-- <img src="../../../img/dog.jpg" alt="dog"> -->
 
+<hr>
+
+<!--BUG Why isn't this showing up in order? After an edit, the blog appears at the bottom BUG-->
+<!--NOTE Add timestamp and order by timestamp. NOTE-->
+
+<div ng-repeat="blog in blogs | orderBy:'blog.id'">
+  <h2>{{blog.title}}</h2>
+  <br>
+  <p><strong>Author:</strong> {{blog.author}}</p>
+  <br>
+  <div><p>{{blog.imageurl}}<p></div>
+  <br>
+  <div>{{blog.content}}</div>
   <hr>
-
-  <!--BUG Why isn't this showing up in order? After an edit, the blog appears at the bottom BUG-->
-  <!--NOTE Add timestamp and order by timestamp. NOTE-->
-
-  <div ng-repeat="blog in blogs | orderBy:'blog.id'">
-    <h2>{{blog.title}}</h2>
-    <br>
-    <p><strong>Author:</strong> {{blog.author}}</p>
-    <br>
-    <div><p>{{blog.imageurl}}<p></div>
-    <br>
-    <div>{{blog.content}}</div>
-    <hr>
-  </div>
+</div>

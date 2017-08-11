@@ -16,16 +16,6 @@ angular.module("blog").service("adminService", function($http, $state) {
 
   // NOTE See if you can make all these shorthand NOTE //
 
-  // this.updateBlogEntry = function(id, title, author, imageurl, content) {
-  //   return $http.put('/api/updateBlogEntry/' + id, ({title, author, imageurl, content}))
-  //     .success(function(data) {
-  //       alert("Entry Updated");
-  //     })
-  //     .error(function(data) {
-  //       alert("Error Updating");
-  //     })
-  // }
-
   this.updateBlogEntry = function(id, title, author, imageurl, content) {
     return $http({
       method: 'PUT',
