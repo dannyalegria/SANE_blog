@@ -163,7 +163,7 @@ $nav-link-hover-color: #2581DC;
 // navbar container
 
 .nav-container {
-	max-width: $content-width;
+	max-width: 100%;
 	margin: 0 auto;
 }
 
@@ -187,7 +187,7 @@ nav {
 				color: $nav-font-color;
 				text-decoration: none;
 				&:hover {
-					background: $link-hover-color;
+					background: $nav-link-hover-color;
 					color: $nav-font-color;
 				}
 				&:not(:only-child):after {
