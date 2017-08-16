@@ -1,8 +1,8 @@
-angular.module("blog").controller("updateEntriesCtrl", function($scope, $stateParams, adminService, homeService) {
+angular.module("personalWebsite").controller("updateEntriesCtrl", function($scope, $stateParams, adminService, blogService) {
 
   var id = $stateParams.id;
 
-  homeService.blogs.then(function(response){
+  blogService.blogs.then(function(response){
     $scope.blogs = response.data;
   })
 

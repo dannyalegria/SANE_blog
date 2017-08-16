@@ -1,4 +1,4 @@
-angular.module("blog").controller("adminCtrl", function($scope, user, authService) {
+angular.module("personalWebsite").controller("adminCtrl", function($scope, user, authService) {
 
 		$scope.user = user;
 

@@ -1,4 +1,4 @@
-angular.module("blog").service("adminService", function($http, $state) {
+angular.module("personalWebsite").service("adminService", function($http, $state) {
 
   this.createBlogEntry = function(blog) {
     $http.post('/api/createBlogEntry', blog)

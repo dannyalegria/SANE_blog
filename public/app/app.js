@@ -6,17 +6,17 @@ angular.module('blog', ['ui.router'])
 	$stateProvider
 		.state('home', {
 			url: '/',
-			templateUrl: './app/routes/home/homeTmpl.html',
+			templateUrl: './app/routes/home/home.html',
 			controller: 'homeCtrl'
 		})
 		.state('login', {
 			url: '/login',
-			templateUrl: './app/routes/login/loginTmpl.html',
+			templateUrl: './app/routes/login/login.html',
 			controller: 'loginCtrl'
 		})
 		.state('admin', {
 			url: '/admin',
-			templateUrl: './app/routes/admin/adminTmpl.html',
+			templateUrl: './app/routes/admin/admin.html',
 			controller: 'adminCtrl',
 			resolve: {
 				user: function(authService, $state) {
@@ -47,5 +47,20 @@ angular.module('blog', ['ui.router'])
 			url: '/updateEntry/:id',
 			templateUrl: './app/routes/admin/updateEntry.html',
 			controller: 'updateEntryCtrl'
+		})
+		.state('blogs', {
+			url:'/blogs',
+			templateUrl:'./app/routes/blogs/blogs.html',
+			controller: 'blogsCtrl'
+		})
+		.state('portfolio', {
+			url: '/portfolio',
+			templateUrl: './app/routes/portfolio/portfolio.html',
+			controller: 'portfolioCtrl'
+		})
+		.state('contact', {
+			url: '/contact',
+			templateUrl: './app/routes/contact/contact.html',
+			controller: 'contactCtrl'
 		})
 });

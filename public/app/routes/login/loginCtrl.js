@@ -1,4 +1,4 @@
-angular.module("blog").controller("loginCtrl", function($scope, authService, $state) {
+angular.module("personalWebsite").controller("loginCtrl", function($scope, authService, $state) {
   $scope.user = {
     email: 'karl@marx.com',
     password: 'capital'

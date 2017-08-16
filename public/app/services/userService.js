@@ -1,4 +1,4 @@
-angular.module("blog")
+angular.module("personalWebsite")
 	.service("userService", function($http) {
 
 		this.getUsers = function() {

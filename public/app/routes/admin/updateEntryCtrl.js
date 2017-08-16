@@ -1,4 +1,4 @@
-angular.module("blog").controller("updateEntryCtrl", function($scope, $stateParams, adminService) {
+angular.module("personalWebsite").controller("updateEntryCtrl", function($scope, $stateParams, adminService) {
 
   var id = $stateParams.id;
   var title = $stateParams.title;

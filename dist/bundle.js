@@ -6,17 +6,17 @@ angular.module('blog', ['ui.router'])
 	$stateProvider
 		.state('home', {
 			url: '/',
-			templateUrl: './app/routes/home/homeTmpl.html',
+			templateUrl: './app/routes/home/home.html',
 			controller: 'homeCtrl'
 		})
 		.state('login', {
 			url: '/login',
-			templateUrl: './app/routes/login/loginTmpl.html',
+			templateUrl: './app/routes/login/login.html',
 			controller: 'loginCtrl'
 		})
 		.state('admin', {
 			url: '/admin',
-			templateUrl: './app/routes/admin/adminTmpl.html',
+			templateUrl: './app/routes/admin/admin.html',
 			controller: 'adminCtrl',
 			resolve: {
 				user: ["authService", "$state", function(authService, $state) {
@@ -50,7 +50,7 @@ angular.module('blog', ['ui.router'])
 		})
 }]);
 
-angular.module("blog").service("adminService", ["$http", "$state", function($http, $state) {
+angular.module("personalWebsite").service("adminService", ["$http", "$state", function($http, $state) {
 
   this.createBlogEntry = function(blog) {
     $http.post('/api/createBlogEntry', blog)
@@ -106,7 +106,7 @@ angular.module("blog").service("adminService", ["$http", "$state", function($htt
 
 }]);
 
-angular.module("blog")
+angular.module("personalWebsite")
 	.service("authService", ["$http", function($http) {
 
 		this.login = function(user) {
@@ -163,13 +163,13 @@ angular.module("blog")
 		};
 }]);
 
-angular.module("blog").service("homeService", ["$http", function($http) {
+angular.module("personalWebsite").service("blogService", ["$http", function($http) {
 
   this.blogs = $http.get('/api/getBlogEntries');
 
 }]);
 
-angular.module("blog")
+angular.module("personalWebsite")
 	.service("userService", ["$http", function($http) {
 
 		this.getUsers = function() {
@@ -187,7 +187,7 @@ angular.module("blog")
 		};
 	}]);
 
-angular.module("blog").controller("navCtrl", ["$scope", "authService", "$state", function($scope, authService, $state) {
+angular.module("personalWebsite").controller("navCtrl", ["$scope", "authService", "$state", function($scope, authService, $state) {
   $scope.logout = function() {
     authService.logout().then(function(response) {
       $state.go('login');
@@ -198,7 +198,7 @@ angular.module("blog").controller("navCtrl", ["$scope", "authService", "$state",
 angular.module('blog').directive('navDir', function() {
   return {
     restrict: 'EA',
-    templateUrl: './app/directives/nav/navTmpl.html',
+    templateUrl: './app/directives/nav/nav.html',
     controller: 'navCtrl',
     link: function(scope, element, attribute) {
 
@@ -228,7 +228,7 @@ angular.module('blog').directive('navDir', function() {
   };
 });
 
-angular.module("blog").controller("adminCtrl", ["$scope", "user", "authService", function($scope, user, authService) {
+angular.module("personalWebsite").controller("adminCtrl", ["$scope", "user", "authService", function($scope, user, authService) {
 
 		$scope.user = user;
 
@@ -241,7 +241,7 @@ angular.module("blog").controller("adminCtrl", ["$scope", "user", "authService",
 
 }]);
 
-angular.module("blog").controller("createEntryCtrl", ["$scope", "adminService", function($scope, adminService) {
+angular.module("personalWebsite").controller("createEntryCtrl", ["$scope", "adminService", function($scope, adminService) {
 
 		$scope.createBlogEntry = function(blog){
 			adminService.createBlogEntry(blog);
@@ -249,11 +249,11 @@ angular.module("blog").controller("createEntryCtrl", ["$scope", "adminService", 
 
 }]);
 
-angular.module("blog").controller("updateEntriesCtrl", ["$scope", "$stateParams", "adminService", "homeService", function($scope, $stateParams, adminService, homeService) {
+angular.module("personalWebsite").controller("updateEntriesCtrl", ["$scope", "$stateParams", "adminService", "blogService", function($scope, $stateParams, adminService, blogService) {
 
   var id = $stateParams.id;
 
-  homeService.blogs.then(function(response){
+  blogService.blogs.then(function(response){
     $scope.blogs = response.data;
   })
 
@@ -269,7 +269,7 @@ angular.module("blog").controller("updateEntriesCtrl", ["$scope", "$stateParams"
 
 }]);
 
-angular.module("blog").controller("updateEntryCtrl", ["$scope", "$stateParams", "adminService", function($scope, $stateParams, adminService) {
+angular.module("personalWebsite").controller("updateEntryCtrl", ["$scope", "$stateParams", "adminService", function($scope, $stateParams, adminService) {
 
   var id = $stateParams.id;
   var title = $stateParams.title;
@@ -296,15 +296,15 @@ angular.module("blog").controller("updateEntryCtrl", ["$scope", "$stateParams", 
 
 }]);
 
-angular.module("blog").controller("homeCtrl", ["$scope", "homeService", function($scope, homeService) {
+angular.module("personalWebsite").controller("homeCtrl", ["$scope", "blogService", function($scope, blogService) {
 
-  homeService.blogs.then(function(response){
+  blogService.blogs.then(function(response){
     $scope.blogs = response.data;
   })
 
 }]);
 
-angular.module("blog").controller("loginCtrl", ["$scope", "authService", "$state", function($scope, authService, $state) {
+angular.module("personalWebsite").controller("loginCtrl", ["$scope", "authService", "$state", function($scope, authService, $state) {
   $scope.user = {
     email: 'karl@marx.com',
     password: 'capital'

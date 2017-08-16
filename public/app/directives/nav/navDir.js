@@ -1,7 +1,7 @@
 angular.module('blog').directive('navDir', function() {
   return {
     restrict: 'EA',
-    templateUrl: './app/directives/nav/navTmpl.html',
+    templateUrl: './app/directives/nav/nav.html',
     controller: 'navCtrl',
     link: function(scope, element, attribute) {
 

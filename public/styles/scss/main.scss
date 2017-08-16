@@ -80,6 +80,7 @@ html {
 // Body Font
 
 // Links:
+
 a {
   cursor: pointer;
 }
@@ -137,12 +138,21 @@ $nav-background: #262626;
 $nav-font-color: #ffffff;
 $nav-link-hover-color: #2581DC;
 
-// nav wrapper
+// Wrapper
 
 .navigation {
-	height: nav-height;
+	height: $nav-height;
 	background: $nav-background;
 }
+
+// Container
+
+.nav-container {
+	max-width: 100%;
+	margin: 0 auto;
+}
+
+// Navbar
 
 // logo
 
@@ -160,14 +170,7 @@ $nav-link-hover-color: #2581DC;
 	}
 }
 
-// navbar container
-
-.nav-container {
-	max-width: 100%;
-	margin: 0 auto;
-}
-
-// nav
+// items
 
 nav {
 	float: right;
@@ -206,7 +209,7 @@ nav {
 	}
 }
 
-// Dropdown
+// item dropdown
 
 .nav-dropdown {
 	position: absolute;
@@ -259,6 +262,8 @@ nav {
 	}
 }
 
+// toggle
+
 #nav-toggle {
 	position: absolute;
 	left: 18px;
@@ -300,6 +305,7 @@ nav {
 }
 
 // dissappearing navbar bug fix
+
 @media screen and (min-width: $nav-breakpoint) {
 	.nav-list {
 		display: block !important;

@@ -1,4 +1,4 @@
-angular.module("blog")
+angular.module("personalWebsite")
 	.service("authService", function($http) {
 
 		this.login = function(user) {
