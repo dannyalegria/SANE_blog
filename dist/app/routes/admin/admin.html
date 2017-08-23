@@ -1,6 +1,27 @@
-<h1>Admin Page</h1>
+<nav-dir></nav-dir>
 
-<p><a>View Entries</a></p>
-<p><a>Create Entry</a></p>
-<p><a>Edit Entry</a></p>
-<p><a>Delete Entries</a></p>
+<h1>Profile:</h1>
+<p> User: {{user.name}}</p>
+<p> Email: {{user.email}}</p>
+
+<br>
+
+<h2>Update Profile:</h2>
+
+<input type="text" ng-model="user.name">
+<input type="text" ng-model="user.email">
+<button type="button" ng-click="updateUser(user)">update</button>
+
+<br>
+
+<h1>Dashboard:</h1>
+
+<button ui-sref="createEntry">Create Entry</button>
+
+<br>
+
+<button ui-sref="updateEntries">Update Entries</button>
+
+<br>
+
+<button>Delete Entries</button>

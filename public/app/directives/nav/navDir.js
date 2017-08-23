@@ -1,4 +1,4 @@
-angular.module('blog').directive('navDir', function() {
+angular.module("personalWebsite").directive('navDir', function() {
   return {
     restrict: 'EA',
     templateUrl: './app/directives/nav/nav.html',

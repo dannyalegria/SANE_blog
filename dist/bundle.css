@@ -1,15 +1,54 @@
 @charset "UTF-8";
 /* Containers */
 /* Colors */
-/* Typography */
 /* Breakpoints */
 html {
-  box-sizing: border-box; }
+  box-sizing: border-box;
+  font-family: monaco, Consolas, "Lucida Console", monospace; }
 
 *, *:before, *:after {
   box-sizing: inherit; }
 
-/* Font */
+h1 {
+  font-family: monaco, Consolas, "Lucida Console", monospace;
+  font-size: 24px;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: 500;
+  line-height: 26.4px; }
+
+h3 {
+  font-family: monaco, Consolas, "Lucida Console", monospace;
+  font-size: 14px;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: 500;
+  line-height: 15.4px; }
+
+p {
+  font-family: monaco, Consolas, "Lucida Console", monospace;
+  font-size: 14px;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: 400;
+  line-height: 20px; }
+
+blockquote {
+  font-family: monaco, Consolas, "Lucida Console", monospace;
+  font-size: 21px;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: 400;
+  line-height: 30px; }
+
+pre {
+  font-family: monaco, Consolas, "Lucida Console", monospace;
+  font-size: 13px;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: 400;
+  line-height: 18.5714px; }
+
 a {
   cursor: pointer; }
 
@@ -31,7 +70,7 @@ a {
 
 /* Navigation */
 .navigation {
-  height: 70px;
+  height: 50px;
   background: #262626; }
 
 .nav-container {
@@ -42,7 +81,7 @@ a {
   position: absolute;
   padding-left: 20px;
   float: left;
-  line-height: 70px;
+  line-height: 50px;
   text-transform: uppercase;
   font-size: 1.4em; }
   .brand a,
@@ -63,7 +102,7 @@ nav {
       nav ul li a:visited {
         display: block;
         padding: 0 20px;
-        line-height: 70px;
+        line-height: 50px;
         background: #262626;
         color: #ffffff;
         text-decoration: none; }
@@ -93,15 +132,15 @@ nav {
   top: 0;
   right: 0;
   background: #262626;
-  height: 70px;
-  width: 70px; }
+  height: 50px;
+  width: 50px; }
 
 @media only screen and (max-width: 800px) {
   .nav-mobile {
     display: block; }
   nav {
     width: 100%;
-    padding: 70px 0 15px; }
+    padding: 50px 0 15px; }
     nav ul {
       display: none; }
       nav ul li {

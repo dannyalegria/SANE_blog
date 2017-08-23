@@ -34,8 +34,6 @@ $desktop: $medium;
 
 /* Colors */
 
-/* Typography */
-
 // 2.) Mixins:
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -63,6 +61,7 @@ $desktop: $medium;
 
 html {
   box-sizing: border-box;
+	font-family: monaco, Consolas, "Lucida Console", monospace;
 }
 
 *, *:before, *:after {
@@ -73,13 +72,49 @@ html {
 // 4.) Typography:
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-/* Font */
+// Headers
+h1 {
+	font-family: monaco, Consolas, "Lucida Console", monospace;
+	font-size: 24px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: 500;
+	line-height: 26.4px;
+}
+h3 {
+	font-family: monaco, Consolas, "Lucida Console", monospace;
+	font-size: 14px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: 500;
+	line-height: 15.4px;
+}
 
-// Headings
-
-// Body Font
-
-// Links:
+// Body
+p {
+	font-family: monaco, Consolas, "Lucida Console", monospace;
+	font-size: 14px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: 400;
+	line-height: 20px;
+}
+blockquote {
+	font-family: monaco, Consolas, "Lucida Console", monospace;
+	font-size: 21px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: 400;
+	line-height: 30px;
+}
+pre {
+	font-family: monaco, Consolas, "Lucida Console", monospace;
+	font-size: 13px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: 400;
+	line-height: 18.5714px;
+}
 
 a {
   cursor: pointer;
@@ -133,7 +168,7 @@ a {
 
 $nav-content-width: 1000px;
 $nav-breakpoint: 800px;
-$nav-height: 70px;
+$nav-height: 50px;
 $nav-background: #262626;
 $nav-font-color: #ffffff;
 $nav-link-hover-color: #2581DC;

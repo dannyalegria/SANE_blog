@@ -1,4 +1,4 @@
-angular.module('blog', ['ui.router'])
+angular.module("personalWebsite", ['ui.router'])
 .config(["$stateProvider", "$urlRouterProvider", function($stateProvider, $urlRouterProvider) {
 
 	$urlRouterProvider.otherwise('/');
@@ -47,6 +47,21 @@ angular.module('blog', ['ui.router'])
 			url: '/updateEntry/:id',
 			templateUrl: './app/routes/admin/updateEntry.html',
 			controller: 'updateEntryCtrl'
+		})
+		.state('blogs', {
+			url:'/blogs',
+			templateUrl:'./app/routes/blogs/blogs.html',
+			controller: 'blogsCtrl'
+		})
+		.state('portfolio', {
+			url: '/portfolio',
+			templateUrl: './app/routes/portfolio/portfolio.html',
+			controller: 'portfolioCtrl'
+		})
+		.state('contact', {
+			url: '/contact',
+			templateUrl: './app/routes/contact/contact.html',
+			controller: 'contactCtrl'
 		})
 }]);
 
@@ -169,6 +184,10 @@ angular.module("personalWebsite").service("blogService", ["$http", function($htt
 
 }]);
 
+angular.module("personalWebsite").service("homeService", ["$http", function($http) {
+
+}]);
+
 angular.module("personalWebsite")
 	.service("userService", ["$http", function($http) {
 
@@ -195,7 +214,7 @@ angular.module("personalWebsite").controller("navCtrl", ["$scope", "authService"
   };
 }]);
 
-angular.module('blog').directive('navDir', function() {
+angular.module("personalWebsite").directive('navDir', function() {
   return {
     restrict: 'EA',
     templateUrl: './app/directives/nav/nav.html',
@@ -296,6 +315,26 @@ angular.module("personalWebsite").controller("updateEntryCtrl", ["$scope", "$sta
 
 }]);
 
+angular.module("personalWebsite").controller("blogCtrl", ["$scope", "blogService", function($scope, blogService) {
+
+  blogService.blogs.then(function(response){
+    $scope.blogs = response.data;
+  })
+
+}]);
+
+angular.module("personalWebsite").controller("blogsCtrl", ["$scope", "blogService", function($scope, blogService) {
+
+  blogService.blogs.then(function(response){
+    $scope.blogs = response.data;
+  })
+
+}]);
+
+angular.module("personalWebsite").controller("contactCtrl", ["$scope", function($scope) {
+
+}]);
+
 angular.module("personalWebsite").controller("homeCtrl", ["$scope", "blogService", function($scope, blogService) {
 
   blogService.blogs.then(function(response){
@@ -335,4 +374,8 @@ angular.module("personalWebsite").controller("loginCtrl", ["$scope", "authServic
       alert('Unable to create user');
     });
   };
+}]);
+
+angular.module("personalWebsite").controller("portfolioCtrl", ["$scope", function($scope) {
+
 }]);

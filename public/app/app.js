@@ -1,4 +1,4 @@
-angular.module('blog', ['ui.router'])
+angular.module("personalWebsite", ['ui.router'])
 .config(function($stateProvider, $urlRouterProvider) {
 
 	$urlRouterProvider.otherwise('/');
