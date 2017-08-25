@@ -331,15 +331,19 @@ angular.module("personalWebsite").controller("blogsCtrl", ["$scope", "blogServic
 
 }]);
 
-angular.module("personalWebsite").controller("contactCtrl", ["$scope", function($scope) {
-
-}]);
-
 angular.module("personalWebsite").controller("homeCtrl", ["$scope", "blogService", function($scope, blogService) {
 
   blogService.blogs.then(function(response){
     $scope.blogs = response.data;
   })
+
+}]);
+
+angular.module("personalWebsite").controller("contactCtrl", ["$scope", function($scope) {
+
+}]);
+
+angular.module("personalWebsite").controller("portfolioCtrl", ["$scope", function($scope) {
 
 }]);
 
@@ -374,8 +378,4 @@ angular.module("personalWebsite").controller("loginCtrl", ["$scope", "authServic
       alert('Unable to create user');
     });
   };
-}]);
-
-angular.module("personalWebsite").controller("portfolioCtrl", ["$scope", function($scope) {
-
 }]);

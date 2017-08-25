@@ -198,6 +198,11 @@ $nav-link-hover-color: #2581DC;
 	line-height: $nav-height;
 	text-transform: uppercase;
 	font-size: 1.4em;
+	img {
+	height: 45px;
+	width: 45px;
+	border-radius: 50%;
+	}
 	a,
 	a:visited {
 		color: $nav-font-color;
@@ -344,5 +349,82 @@ nav {
 @media screen and (min-width: $nav-breakpoint) {
 	.nav-list {
 		display: block !important;
+	}
+}
+
+// 9.) Pages:
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+/* Home */
+// ~~~~~~~~~~
+
+.home-banner {
+	position: relative;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 400px;
+	background: url("./img/space.png") fixed;
+	// background-color: grey;
+	.banner-text {
+		border: double 3px;
+		border-radius: 5px;
+		padding: 10px;
+		color: white;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		text-align: center;
+		h2 {
+			margin: 0;
+		}
+		button {
+			color: grey;
+		}
+		img {
+			height: 100px;
+			width: 100px;
+			border-radius: 50%;
+		}
+	}
+}
+
+.about {
+	border: solid white 2px;
+	position: relative;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 400px;
+	background-color: white;
+	h1 {
+		text-align: center;
+	}
+}
+
+.portfolio {
+	border: solid grey 2px;
+	position: relative;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 400px;
+	background-color: grey;
+	h1 {
+		text-align: center;
+	}
+}
+
+.contact {
+	border: solid white 2px;
+	position: relative;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 400px;
+	background-color: white;
+	h1 {
+		text-align: center;
 	}
 }
